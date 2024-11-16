@@ -1,14 +1,14 @@
-import * as globals from "globals";
+import globals from "globals";
 import pluginJs from "@eslint/js";
 
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   {
     ignores: ["**/*.test.js"],
     files: ["**/*.js"],
     languageOptions: {
       sourceType: "commonjs",
-      globals: globals.node, // Correction ici
+      globals: globals.node, // Référence correcte pour globals@14
     },
   },
   pluginJs.configs.recommended,
