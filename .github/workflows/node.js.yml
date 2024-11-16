@@ -78,7 +78,7 @@ jobs:
         id: check_message
         run: |
           LAST_COMMIT=$(git log -1 --pretty=%B)
-          if [[ "$LAST_COMMIT" == "chore: release" ]]; then
+          if [[ "$LAST_COMMIT" == *"chore: release"* ]]; then
             echo "is_chore_release=true" >> $GITHUB_ENV
           else
             echo "is_chore_release=false" >> $GITHUB_ENV
