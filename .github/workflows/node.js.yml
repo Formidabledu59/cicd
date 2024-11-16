@@ -56,14 +56,21 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
         run: npm install
-      - name: Run test
+      - name: Run unit tests
         run: npm run test
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: unit-test  # Ne s'exécute que si le job unit-test réussit
+    steps:
+      - name: Run integration tests
+        run: echo "Hello Integration !"
 
   e2e-test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    needs: integration-test  # Ne s'exécute que si integration-test réussit
     steps:
-      - name: Say Hello
+      - name: Run end-to-end tests
         run: echo "Hello E2E !"
 
   only-canary:
@@ -108,6 +115,3 @@ jobs:
         run: npx --yes release-it --ci
         env:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
-
-
-
