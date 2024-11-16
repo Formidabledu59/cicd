@@ -8,6 +8,7 @@ on:
 
 env:
   NODE_VERSION: "20.18.0" # version de Node.js
+  ENV_TARGET: "canary"
 
 permissions:
   contents: write
