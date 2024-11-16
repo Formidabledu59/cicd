@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: "20.18.0" # version de Node.js
-  ENV_TARGET: "canary"
+  NODE_VERSION: "20.18.0"  # version de Node.js
+  ENV_TARGET: "canary"  # variable pour activer le job only-canary
 
 permissions:
   contents: write
@@ -69,7 +69,7 @@ jobs:
 
   only-canary:
     runs-on: ubuntu-latest
-    if: env.ENV_TARGET == 'canary'
+    if: ${{ env.ENV_TARGET == 'canary' }}  # Utilisation correcte de la variable d'environnement
     steps:
       - name: Say Hello
         run: echo "Hello Only Canary !"
