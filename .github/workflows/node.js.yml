@@ -117,15 +117,28 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
 
   build:
-    runs-on: ubuntu-latest  
+    name: Deploy HTML File 🚀
+    runs-on: ubuntu-latest  # Utiliser Ubuntu pour le job
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  
-      - name: Setup Node.js
-        uses: actions/setup-node@v3 
+      # 1. Checkout du code source
+      - name: Checkout code 🔄
+        uses: actions/checkout@v3
+
+      # 2. Installer Node.js (optionnel si tu as besoin de certaines commandes npm, sinon peut être retiré)
+      - name: Set up Node.js 🖥️
+        uses: actions/setup-node@v3
+
+      # 3. Serve ton fichier index.html avec un simple serveur
+      - name: Serve HTML with http-server 🖥️
+        run: |
+          npm install -g http-server  # Installe http-server
+          http-server ./public -p 8080 -d false  # Servez ton dossier 'public' sur le port 8080
+
+      # 4. Uploader l'artefact (optionnel si tu veux garder une copie dans GitHub)
+      - name: Upload HTML as artifact 📂
+        uses: actions/upload-artifact@v3
         with:
-          node-version: '20.18.0' 
-      - name: Install dependencies
-        run: npm install  
-      - name: dev the project
-        run: npm run dev 
+          name: html-file
+          path: ./public/index.html
+ 

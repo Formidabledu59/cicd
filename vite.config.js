@@ -1,11 +1,14 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: 'public',  // Utilise le dossier 'public' comme racine
+  root: 'src',  // Le dossier 'src' contient tes fichiers sources
   build: {
-    outDir: '../dist',  // Le dossier où tu veux que les fichiers de build soient placés (au niveau de la racine du projet)
+    outDir: '../dist',  // Le dossier 'dist' est à la racine du projet (en dehors de 'src')
+    rollupOptions: {
+      input: 'src/index.js',  // Point d'entrée de ton application
+    },
   },
   server: {
-    open: true,  // Ouvre automatiquement ton navigateur à l'adresse locale
-  }
-})
+    open: true,  // Ouvre automatiquement le navigateur lorsque tu démarres le serveur
+  },
+});
