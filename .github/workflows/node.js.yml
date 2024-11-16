@@ -74,7 +74,7 @@ jobs:
       - name: Install release-it
         run: npm install -g release-it
 
-      - name: Check if commit message is "chore: release"
+      - name: Check if commit message is "chore release"
         id: check_message
         run: |
           LAST_COMMIT=$(git log -1 --pretty=%B)
@@ -91,4 +91,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
 
 
-          
+
