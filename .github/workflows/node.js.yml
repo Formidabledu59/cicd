@@ -59,6 +59,13 @@ jobs:
       - name: Run test
         run: npm run test
 
+  e2e-test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Say Hello
+        run: echo "Hello E2E !"
+
   release:
     name: Release
     runs-on: ubuntu-latest
