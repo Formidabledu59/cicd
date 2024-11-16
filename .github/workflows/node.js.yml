@@ -9,6 +9,10 @@ on:
 env:
   NODE_VERSION: "20.18.0" # version de Node.js
 
+permissions:
+  contents: write
+  packages: write
+
 # All JOBS------------------------------------------------------------
 jobs:
 
@@ -60,10 +64,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-    
+
       - name: Set up Git configuration
         run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "${{ github.actor }}"
-    
+
       - name: Pull the latest changes from the main branch
         run: git pull origin main --rebase
       - name: Install release-it
@@ -72,6 +76,5 @@ jobs:
         run: npx --yes release-it --ci
         env:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
-        
-        
-          
+
+
