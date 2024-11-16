@@ -71,7 +71,7 @@ jobs:
     needs: install
     env:  # Redéfinition des variables d'environnement
       ENV_TARGET: "canary"
-    if: ${{ env.ENV_TARGET == 'canary' }}  # Condition basée sur l'environnement
+    if: ${{ github.event.inputs.ENV_TARGET == 'canary' }}
     steps:
       - name: Say Hello
         run: echo "Hello Only Canary !"
