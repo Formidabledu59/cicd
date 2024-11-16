@@ -32,7 +32,7 @@ nom-du-repository/
 #### Lancement des tests local
 Assurez-vous que les pipeline fonctionnent correctement avant de pousser votre code :
 ```shell
-npm run [script_package.json]
+npm run [script_package.json] 
 ```
 
 En cas d'échec, vérifiez les messages d'erreur dans la console pour corriger les problèmes.
