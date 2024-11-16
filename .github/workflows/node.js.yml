@@ -56,14 +56,15 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name != 'release' && github.event.head_commit.message != startswith('chore: release')
+    if: >
+    github.ref == 'refs/heads/main' &&
+    github.event_name != 'release' &&
+    !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
       - name: Set up Git configuration
         run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "${{ github.actor }}"
-      
       - name: Pull the latest changes from the main branch
         run: git pull origin main --rebase    
       - name: Install release-it
