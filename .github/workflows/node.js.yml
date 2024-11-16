@@ -53,25 +53,25 @@ jobs:
       - name: Run test
         run: npm run test
 
-release:
-  name: Release
-  runs-on: ubuntu-latest
-  if: github.ref == 'refs/heads/main' && github.event_name != 'release'
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Git configuration
-      run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "${{ github.actor }}"
-
-    - name: Pull the latest changes from the main branch
-      run: git pull origin main --rebase
-    - name: Install release-it
-      run: npm install -g release-it
-    - name: Run release-it
-      run: npx --yes release-it --ci
-      env:
-        GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
-
-
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name != 'release'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Set up Git configuration
+        run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "${{ github.actor }}"
+    
+      - name: Pull the latest changes from the main branch
+        run: git pull origin main --rebase
+      - name: Install release-it
+        run: npm install -g release-it
+      - name: Run release-it
+        run: npx --yes release-it --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
         
+        
+          
